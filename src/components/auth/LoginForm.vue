@@ -65,7 +65,9 @@ import weibo from "../../assets/images/Auth/weibo.png";
 import { loginApi } from "../../api/auth/auth.ts";
 import { ElMessage } from "element-plus";
 import store from "../../store";
-export default {
+import { defineComponent, reactive } from "vue";
+
+export default defineComponent({
   name: "LoginForm",
   components: {
     Ready,
@@ -76,31 +78,7 @@ export default {
         phone: "",
         password: "",
       },
-      LoginForm: [
-        {
-          title: "手机号",
-          name: "phone",
-          value: "",
-          meta: {
-            max: 11,
-          },
-        },
-        {
-          title: "登录密码",
-          name: "password",
-          value: "",
-          meta: {
-            max: 30,
-            type: "password",
-          },
-        },
-      ],
-      rules: {
-        phone: [{ required: true, message: "请输入手机号码", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-      },
       ready: false,
-      login_icons: [weixin, qq, weibo],
     };
   },
   methods: {
@@ -132,17 +110,56 @@ export default {
         });
       }
     },
-    regist() {
-      store.commit("setEvent", "regist");
-    },
-    alter() {
-      store.commit("setEvent", "alter");
-    },
+
     readyClick() {
       this.$refs.readyBox.dialogVisible = true;
     },
   },
-};
+  setup() {
+    const LoginForm = reactive([
+      {
+        title: "手机号",
+        name: "phone",
+        value: "",
+        meta: {
+          max: 11,
+        },
+      },
+      {
+        title: "登录密码",
+        name: "password",
+        value: "",
+        meta: {
+          max: 30,
+          type: "password",
+        },
+      },
+    ]);
+
+    const rules = reactive({
+      phone: [{ required: true, message: "请输入手机号码", trigger: "blur" }],
+      password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+    });
+
+    const login_icons = reactive([weixin, qq, weibo]);
+
+    const regist = () => {
+      store.commit("setEvent", "regist");
+    };
+
+    const alter = () => {
+      store.commit("setEvent", "alter");
+    };
+
+    return {
+      LoginForm,
+      rules,
+      login_icons,
+      regist,
+      alter,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>

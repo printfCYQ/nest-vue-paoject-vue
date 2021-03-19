@@ -9,17 +9,17 @@
       <!-- 表单 -->
       <div class="login-card" v-if="formEvent === 'login'">
         <div class="login-bg"></div>
-        <login-form class="login-form"></login-form>
+        <LoginForm class="login-form"></LoginForm>
       </div>
 
       <div class="login-card" v-else-if="formEvent === 'regist'">
         <div class="login-bg"></div>
-        <regist-form class="login-form"></regist-form>
+        <RegistForm class="login-form"></RegistForm>
       </div>
 
       <div class="login-card" v-else-if="formEvent === 'alter'">
         <div class="login-bg"></div>
-        <alter-form class="login-form"></alter-form>
+        <AlterForm class="login-form"></AlterForm>
       </div>
     </div>
     <img :src="login_background" />
@@ -43,9 +43,9 @@ export default {
     };
   },
   created() {
-    console.log(this.$store.state.count);
-    this.$store.commit("increment");
-    console.log(this.$store.state.count);
+    // console.log(this.$store.state.count);
+    // this.$store.commit("increment");
+    // console.log(this.$store.state.count);
     hello().then((res) => {
       console.log(res);
     });
@@ -64,9 +64,9 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .login {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   display: flex;

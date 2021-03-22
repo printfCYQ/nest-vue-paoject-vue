@@ -70,3 +70,12 @@ export function findProjectByKindPageApi(kindId: string, data: IPage) {
     });
 }
 
+/*按createdId查询文章(fenye)*/
+export function getProjectsByUserApi(userid: string, data: IPage) {
+    return api({
+        method: "POST",
+        url: "/project/getProjectsByUser/" + userid,
+        data: data
+    });
+}
+

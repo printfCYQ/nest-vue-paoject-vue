@@ -41,16 +41,20 @@
         </div>
       </el-col>
     </el-row>
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-sizes="[6, 9, 12]"
-      :page-size="pageSize"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="pageTotal"
-    >
-    </el-pagination>
+    <div class="page-box">
+      <el-pagination
+        background
+        :hide-on-single-page="true"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-sizes="[6, 9, 12]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="pageTotal"
+      >
+      </el-pagination>
+    </div>
     <!-- <div class="load-more" @click="loadMore">查看更多</div> -->
   </div>
 </template>
@@ -136,7 +140,7 @@ export default {
     },
 
     handelEdit(id) {
-      this.$router.push({ path: '/newArticle', query: { id: id }});
+      this.$router.push({ path: "/newArticle", query: { id: id } });
     },
 
     // 分类查看
@@ -222,6 +226,11 @@ export default {
 .box-card:hover {
   transform: scale(1.1);
   transition: transform 0.4s ease;
+}
+.page-box {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
 }
 .load-more {
   text-align: center;

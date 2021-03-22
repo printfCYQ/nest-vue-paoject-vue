@@ -61,6 +61,7 @@ export default {
     text-align: center;
     font-size: 30px;
     font-weight: 700;
+    margin-top: 20px;
   }
 
   .card-list {
